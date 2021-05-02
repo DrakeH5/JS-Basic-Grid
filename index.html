@@ -1,0 +1,43 @@
+<html>
+<head><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script></head>
+<body onload="draw()">
+<canvas id="canvas"></canvas>
+<img src="img.png" id="img" width="0" height="0"></img>
+<style>
+#canvas {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+</style>
+<script>
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  var img = document.getElementById("img");
+
+function draw() {
+  x = 1;
+  y = 1;
+  width = 15;
+  height = 15;
+  gap = 2;
+  for (i = 0; i < canvas.width; i++){
+    console.log("lying tile");
+    if(y < canvas.height) {
+      ctx.drawImage(img,x,y,width,height);
+      y += height + gap;
+    } else {
+      x += width + gap;
+      y = 1;
+    }
+  }
+}
+
+function whichTile(x,y,width,height) {
+  return Math.ceil(x/width) + " " + Math.ceil(y/height);
+}
+
+  console.log(whichTile(42,100,17,17)); //finding what tile the cordinate (42,100) is in
+</script>
+</body>
+</html>
